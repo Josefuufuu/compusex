@@ -66,7 +66,7 @@ public class Vehicle {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Driver{");
+        sb.append("Vehicle{");
         sb.append("id=").append(id);
         sb.append(", plate=").append(plate);
         sb.append(", cylinder=").append(cylinder);

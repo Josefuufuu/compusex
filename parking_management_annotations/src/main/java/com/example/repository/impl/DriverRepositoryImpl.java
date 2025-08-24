@@ -32,7 +32,9 @@ public class DriverRepositoryImpl implements IDriverRepository{
 
     @Override
     public Driver save(Driver driver) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        drivers.removeIf(d -> d.getId_number().equalsIgnoreCase(driver.getId_number()));
+        drivers.add(driver);
+        return driver;
     }
 
 
