@@ -34,6 +34,11 @@ public class VehicleServiceImpl implements IVehicleService{
     }
 
     @Override
+    public void addVehicle(Vehicle vehicle) {
+        vehicleRepository.addVehicle(vehicle);
+    }
+
+    @Override
     public void deleteByPlate(String plate) {
 
         if (plate == null || plate.isBlank()) {

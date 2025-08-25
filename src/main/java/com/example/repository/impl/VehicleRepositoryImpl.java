@@ -31,6 +31,11 @@ public class VehicleRepositoryImpl implements IVehicleRepository{
     }
 
     @Override
+    public void addVehicle(Vehicle vehicle) {
+        vehicles.add(vehicle);
+    }
+
+    @Override
     public void deleteByPlate(String plate) {
         vehicles.removeIf(v -> v.getPlate().equalsIgnoreCase(plate));
     }
