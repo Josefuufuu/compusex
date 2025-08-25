@@ -9,6 +9,7 @@ com\example\services\IDriverService.class
 com\example\services\IVehicleService.class
 com\example\repository\IVehicleRepository.class
 com\example\model\Vehicle.class
+com\example\servlet\DriverListServlet.class
 com\example\services\impl\DriverServiceImpl.class
 com\example\Config\AppConfig.class
 com\example\repository\impl\DriverRepositoryImpl.class

@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name="MainApp", value="/vehiculos")
+@WebServlet(name="MainApp", value="/search-plate")
 public class AplicationServlet extends HttpServlet{
 
     private String message;
@@ -24,7 +24,7 @@ public class AplicationServlet extends HttpServlet{
 
     @Override
     public void init(){
-         message = "Server is running";
+         message = "Búsqueda por placa";
          WebApplicationContext ctx = WebApplicationContextUtils
                 .getRequiredWebApplicationContext(getServletContext());
          this.vehicleService = ctx.getBean(IVehicleService.class);
