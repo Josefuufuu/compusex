@@ -1,9 +1,0 @@
-com\example\model\FuelType.class
-com\example\model\Vehicle.class
-com\example\servlet\AplicationServlet.class
-com\example\model\AppConfig.class
-com\example\model\Cylinder.class
-com\example\model\Series.class
-com\example\model\Plate.class
-com\example\model\Label.class
-com\example\model\Driver.class
