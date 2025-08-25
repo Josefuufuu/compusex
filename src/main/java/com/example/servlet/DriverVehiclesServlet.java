@@ -3,8 +3,9 @@ package com.example.servlet;
 import java.io.IOException;
 import java.util.List;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.example.Config.AppConfig;
 import com.example.model.Driver;
 import com.example.model.Vehicle;
 import com.example.services.IDriverService;
@@ -18,11 +19,11 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(name="driverVehicles", value="/driver/vehicles")
 public class DriverVehiclesServlet extends HttpServlet {
     private IDriverService driverService;
-    private ClassPathXmlApplicationContext ctx;
+    private AnnotationConfigApplicationContext ctx;
 
     @Override
     public void init() throws ServletException {
-        ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         this.driverService = ctx.getBean(IDriverService.class);
     }
 

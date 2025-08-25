@@ -11,6 +11,7 @@ import com.example.services.IVehicleService;
 public class DebugApp {
 
     public static void main(String[] args) {
+        // Context based on explicit @Bean definitions in AppConfig
         try (var ctx = new AnnotationConfigApplicationContext(AppConfig.class)) {
 
             // 1) Obtener beans (services)

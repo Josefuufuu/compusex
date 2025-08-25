@@ -2,21 +2,16 @@ package com.example.services.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.example.model.Driver;
 import com.example.repository.IDriverRepository;
 import com.example.repository.IVehicleRepository;
 import com.example.services.IDriverService;
 
-@Service
 public class DriverServiceImpl implements IDriverService {
 
     private final IDriverRepository driverRepository;
     private final IVehicleRepository vehicleRepository;
 
-    @Autowired
     public DriverServiceImpl(IDriverRepository driverRepository, IVehicleRepository vehicleRepository) {
         this.driverRepository = driverRepository;
         this.vehicleRepository = vehicleRepository;

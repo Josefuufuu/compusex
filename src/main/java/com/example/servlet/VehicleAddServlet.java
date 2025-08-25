@@ -2,8 +2,9 @@ package com.example.servlet;
 
 import java.io.IOException;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.example.Config.AppConfig;
 import com.example.model.Vehicle;
 import com.example.services.IVehicleService;
 
@@ -16,11 +17,11 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(name="addVehicle", value="/vehicle/add")
 public class VehicleAddServlet extends HttpServlet {
     private IVehicleService vehicleService;
-    private ClassPathXmlApplicationContext ctx;
+    private AnnotationConfigApplicationContext ctx;
 
     @Override
     public void init() throws ServletException {
-        ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         this.vehicleService = ctx.getBean(IVehicleService.class);
     }
 
