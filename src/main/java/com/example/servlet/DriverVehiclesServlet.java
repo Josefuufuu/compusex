@@ -3,8 +3,7 @@ package com.example.servlet;
 import java.io.IOException;
 import java.util.List;
 
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.example.model.Driver;
 import com.example.model.Vehicle;
@@ -19,11 +18,11 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(name="driverVehicles", value="/driver/vehicles")
 public class DriverVehiclesServlet extends HttpServlet {
     private IDriverService driverService;
+    private ClassPathXmlApplicationContext ctx;
 
     @Override
     public void init() throws ServletException {
-        WebApplicationContext ctx = WebApplicationContextUtils
-                .getRequiredWebApplicationContext(getServletContext());
+        ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
         this.driverService = ctx.getBean(IDriverService.class);
     }
 
@@ -59,5 +58,12 @@ public class DriverVehiclesServlet extends HttpServlet {
         request.setAttribute("message", message);
         request.getRequestDispatcher("/WEB-INF/views/driverVehicles.jsp")
                .forward(request, response);
+    }
+
+    @Override
+    public void destroy() {
+        if (ctx != null) {
+            ctx.close();
+        }
     }
 }

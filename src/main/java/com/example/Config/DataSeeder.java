@@ -1,16 +1,9 @@
 package com.example.Config;
 
-import org.springframework.stereotype.Component;
-
 import com.example.model.Driver;
 import com.example.model.Vehicle;
 import com.example.services.impl.DriverServiceImpl;
 import com.example.services.impl.VehicleServiceImpl;
-
-import jakarta.annotation.PostConstruct;
-
-
-@Component
 public class DataSeeder {
 
 private final DriverServiceImpl  driverService;
@@ -21,7 +14,6 @@ private final VehicleServiceImpl vehicleService;
 
     }
 
-    @PostConstruct
     public void init(){
 
         // Instancias de conductor

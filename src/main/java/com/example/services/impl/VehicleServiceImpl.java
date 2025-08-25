@@ -2,14 +2,11 @@ package com.example.services.impl;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.example.model.Driver;
 import com.example.model.Vehicle;
 import com.example.repository.impl.VehicleRepositoryImpl;
 import com.example.services.IVehicleService;
 
-@Service
 public class VehicleServiceImpl implements IVehicleService{
 
     private VehicleRepositoryImpl vehicleRepository;
