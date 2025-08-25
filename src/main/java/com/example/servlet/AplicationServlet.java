@@ -3,6 +3,12 @@ package com.example.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.example.model.Vehicle;
+import com.example.services.IVehicleService;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,12 +18,18 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(name="MainApp", value="/vehiculos")
 public class AplicationServlet extends HttpServlet{
-    
+
     private String message;
+    private IVehicleService vehicleService;
+
     @Override
     public void init(){
          message = "Server is running";
+         WebApplicationContext ctx = WebApplicationContextUtils
+                .getRequiredWebApplicationContext(getServletContext());
+         this.vehicleService = ctx.getBean(IVehicleService.class);
     }
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 
@@ -43,13 +55,16 @@ public class AplicationServlet extends HttpServlet{
         if (placa == null || placa.trim().isEmpty()){
             out.println("<p>Por favor ingrese una placa.</p>");
         } else {
-            // Aquí iría la lógica real de búsqueda (BD o servicio). Se muestra resultado simulado.
-            out.println("<p>Buscando vehículo con placa: <strong>" + escapeHtml(placa) + "</strong></p>");
-            out.println("<ul>");
-            out.println("<li>Placa: " + escapeHtml(placa) + "</li>");
-            out.println("<li>Marca: Ejemplo</li>");
-            out.println("<li>Modelo: 2020</li>");
-            out.println("</ul>");
+            Vehicle vehicle = vehicleService.findByPlate(placa);
+            if (vehicle == null) {
+                out.println("<p>No se encontró un vehículo con placa: <strong>" + escapeHtml(placa) + "</strong></p>");
+            } else {
+                out.println("<ul>");
+                out.println("<li>Placa: " + escapeHtml(vehicle.getPlate()) + "</li>");
+                out.println("<li>Marca: " + escapeHtml(vehicle.getBrand()) + "</li>");
+                out.println("<li>Modelo: " + escapeHtml(vehicle.getSeries()) + "</li>");
+                out.println("</ul>");
+            }
         }
         out.println("<p><a href='" + request.getContextPath() + "/vehiculos'>Nueva búsqueda</a></p>");
         out.println("</body></html>");
@@ -57,12 +72,14 @@ public class AplicationServlet extends HttpServlet{
 
     private String escapeHtml(String s) {
         if (s == null) return "";
-        return s.replace("&", "&amp;").replace("<","&lt;").replace(">","&gt;").replace("\"","&quot;").replace("'", "&#x27;");
+        return s.replace("&", "&amp;").replace("<","&lt;").replace(">","&gt;")
+                .replace("\"","&quot;").replace("'", "&#x27;");
     }
 
     @Override
     public void destroy(){
         message = "This servlet is not running";
     }
-    
+
 }
+

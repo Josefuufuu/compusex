@@ -31,7 +31,6 @@ public class VehicleServiceImpl implements IVehicleService{
     @Override
     public void addToDriver(Driver driver, Vehicle vehicle) {
         vehicleRepository.addToDriver(driver, vehicle);
-        driver.addToDriver(vehicle);
     }
 
     @Override
