@@ -2,8 +2,7 @@ package com.example.servlet;
 
 import java.io.IOException;
 
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.example.model.Driver;
 import com.example.services.IDriverService;
@@ -17,11 +16,11 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(name="addDriver", value="/driver/add")
 public class DriverAddServlet extends HttpServlet {
     private IDriverService driverService;
+    private ClassPathXmlApplicationContext ctx;
 
     @Override
     public void init() throws ServletException {
-        WebApplicationContext ctx = WebApplicationContextUtils
-                .getRequiredWebApplicationContext(getServletContext());
+        ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
         this.driverService = ctx.getBean(IDriverService.class);
     }
 
@@ -52,5 +51,12 @@ public class DriverAddServlet extends HttpServlet {
 
         request.setAttribute("message", message);
         request.getRequestDispatcher("/WEB-INF/views/addDriver.jsp").forward(request, response);
+    }
+
+    @Override
+    public void destroy() {
+        if (ctx != null) {
+            ctx.close();
+        }
     }
 }

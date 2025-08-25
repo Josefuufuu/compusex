@@ -1,8 +1,6 @@
 package com.example;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import com.example.Config.AppConfig;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.example.model.Driver;
 import com.example.model.Vehicle;
 import com.example.services.IDriverService;
@@ -11,7 +9,7 @@ import com.example.services.IVehicleService;
 public class DebugApp {
 
     public static void main(String[] args) {
-        try (var ctx = new AnnotationConfigApplicationContext(AppConfig.class)) {
+        try (var ctx = new ClassPathXmlApplicationContext("applicationContext.xml")) {
 
             // 1) Obtener beans (services)
             IDriverService driverService = ctx.getBean(IDriverService.class);

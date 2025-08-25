@@ -3,8 +3,7 @@ package com.example.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.example.model.Vehicle;
 import com.example.services.IVehicleService;
@@ -21,12 +20,12 @@ public class AplicationServlet extends HttpServlet{
 
     private String message;
     private IVehicleService vehicleService;
+    private ClassPathXmlApplicationContext ctx;
 
     @Override
     public void init(){
          message = "Búsqueda por placa";
-         WebApplicationContext ctx = WebApplicationContextUtils
-                .getRequiredWebApplicationContext(getServletContext());
+         ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
          this.vehicleService = ctx.getBean(IVehicleService.class);
     }
 
@@ -78,6 +77,9 @@ public class AplicationServlet extends HttpServlet{
 
     @Override
     public void destroy(){
+        if (ctx != null) {
+            ctx.close();
+        }
         message = "This servlet is not running";
     }
 

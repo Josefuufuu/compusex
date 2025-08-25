@@ -1,3 +1,26 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/5bNPY7lO)
+# Parking Management
 
-Hola github
+Aplicación de ejemplo que utiliza **Spring Framework** configurado mediante
+`applicationContext.xml` para manejar los beans del dominio.
+
+## Compilación
+
+```bash
+mvn clean package
+```
+
+## Ejecución
+
+Para ejecutar la clase de demostración:
+
+```bash
+java -cp target/parking_management/WEB-INF/classes:\
+"$(find target/parking_management/WEB-INF/lib -name '*.jar' -printf '%p:')" \
+com.example.DebugApp
+```
+
+El comando anterior construye la ruta de clases necesaria para ejecutar la
+aplicación desde la línea de comandos. Alternativamente, el archivo WAR
+generado puede desplegarse en cualquier contenedor de servlets compatible con
+Jakarta EE.
+

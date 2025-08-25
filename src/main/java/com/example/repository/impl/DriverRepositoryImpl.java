@@ -3,12 +3,8 @@ package com.example.repository.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import com.example.model.Driver;
 import com.example.repository.IDriverRepository;
-
-@Repository()
 public class DriverRepositoryImpl implements IDriverRepository{
 
     List<Driver> drivers = new ArrayList<>();
