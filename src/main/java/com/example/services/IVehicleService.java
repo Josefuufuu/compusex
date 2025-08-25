@@ -7,8 +7,9 @@ import com.example.model.Vehicle;
 
 public interface IVehicleService {
     List<Vehicle> findAll();
-    Vehicle findByPlate(String plate);     
+    Vehicle findByPlate(String plate);
     void addToDriver(Driver driver, Vehicle vehicle);
-    void deleteByPlate(String plate);    
+    void addVehicle(Vehicle vehicle);
+    void deleteByPlate(String plate);
 }
 
