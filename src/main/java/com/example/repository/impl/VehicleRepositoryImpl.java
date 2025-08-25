@@ -3,13 +3,16 @@ package com.example.repository.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.example.model.Driver;
 import com.example.model.Vehicle;
 import com.example.repository.IVehicleRepository;
 
-public class VehicleRepositoryImpl implements IVehicleRepository{
+@Repository
+public class VehicleRepositoryImpl implements IVehicleRepository {
 
-    private final List<Vehicle> vehicles = new  ArrayList<>();
+    private final List<Vehicle> vehicles = new ArrayList<>();
 
     @Override
     public List<Vehicle> findAll() {
@@ -38,3 +41,4 @@ public class VehicleRepositoryImpl implements IVehicleRepository{
     }
     
 }
+

@@ -1,20 +1,29 @@
 package com.example.Config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import jakarta.annotation.PostConstruct;
+
 import com.example.model.Driver;
 import com.example.model.Vehicle;
-import com.example.services.impl.DriverServiceImpl;
-import com.example.services.impl.VehicleServiceImpl;
+import com.example.services.IDriverService;
+import com.example.services.IVehicleService;
+
+@Component
 public class DataSeeder {
 
-private final DriverServiceImpl  driverService;
-private final VehicleServiceImpl vehicleService;
-    public DataSeeder(DriverServiceImpl driverService, VehicleServiceImpl vehicleService){
+    private final IDriverService driverService;
+    private final IVehicleService vehicleService;
+
+    @Autowired
+    public DataSeeder(IDriverService driverService, IVehicleService vehicleService) {
         this.driverService = driverService;
         this.vehicleService = vehicleService;
-
     }
 
-    public void init(){
+    @PostConstruct
+    public void init() {
 
         // Instancias de conductor
         Driver d1 = new Driver(0, "Faiber", "Competitive Driver", "C.C", "1061198722");
@@ -48,3 +57,4 @@ private final VehicleServiceImpl vehicleService;
 
 
 }
+

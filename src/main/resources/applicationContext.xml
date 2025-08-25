@@ -16,7 +16,7 @@
         <constructor-arg ref="vehicleRepository"/>
     </bean>
 
-    <bean id="dataSeeder" class="com.example.Config.DataSeeder" init-method="init">
+    <bean id="dataSeeder" class="com.example.Config.DataSeeder">
         <constructor-arg ref="driverService"/>
         <constructor-arg ref="vehicleService"/>
     </bean>
