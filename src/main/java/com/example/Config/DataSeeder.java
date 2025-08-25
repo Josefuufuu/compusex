@@ -1,8 +1,5 @@
 package com.example.Config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import jakarta.annotation.PostConstruct;
 
 import com.example.model.Driver;
@@ -10,13 +7,11 @@ import com.example.model.Vehicle;
 import com.example.services.IDriverService;
 import com.example.services.IVehicleService;
 
-@Component
 public class DataSeeder {
 
     private final IDriverService driverService;
     private final IVehicleService vehicleService;
 
-    @Autowired
     public DataSeeder(IDriverService driverService, IVehicleService vehicleService) {
         this.driverService = driverService;
         this.vehicleService = vehicleService;

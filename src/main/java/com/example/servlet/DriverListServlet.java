@@ -2,8 +2,9 @@ package com.example.servlet;
 
 import java.io.IOException;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.example.Config.AppConfig;
 import com.example.services.IDriverService;
 
 import jakarta.servlet.ServletException;
@@ -15,11 +16,11 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(name="drivers", value="/drivers")
 public class DriverListServlet extends HttpServlet {
     private IDriverService driverService;
-    private ClassPathXmlApplicationContext ctx;
+    private AnnotationConfigApplicationContext ctx;
 
     @Override
     public void init() throws ServletException {
-        ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         this.driverService = ctx.getBean(IDriverService.class);
     }
 
